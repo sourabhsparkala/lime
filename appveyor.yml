@@ -9,13 +9,6 @@ init:
 
 platform: Any CPU
 
-environment:
-  R_ARCH: x64
-
-matrix:
-  allow_failures:
-    - platform: x64
-
 install:
   ps: Bootstrap
 
