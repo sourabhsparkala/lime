@@ -17,9 +17,6 @@ install:
 build_script:
   - travis-tool.sh install_deps
 
-test_script:
-  - travis-tool.sh run_tests
-
 artifacts:
   - path: '\*_*.zip'
     name: Bits
