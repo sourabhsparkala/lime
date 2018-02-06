@@ -7,10 +7,14 @@ init:
         Invoke-WebRequest http://raw.github.com/krlmlr/r-appveyor/master/scripts/appveyor-tool.ps1 -OutFile "..\appveyor-tool.ps1"
         Import-Module '..\appveyor-tool.ps1'
 
-platform: x64
+platform: Any CPU
 
 environment:
   R_ARCH: x64
+
+matrix:
+  allow_failures:
+    - platform: x64
 
 install:
   ps: Bootstrap
@@ -19,6 +23,13 @@ install:
 
 build_script:
   - travis-tool.sh install_deps
+
+test_script:
+  - travis-tool.sh run_tests
+
+on_failure:
+  - 7z a failure.zip *.Rcheck\*
+  - appveyor PushArtifact failure.zip
 
 artifacts:
   - path: '*.Rcheck\**\*.log'
