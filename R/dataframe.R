@@ -107,8 +107,8 @@ explain.data.frame <- function(x, explainer, labels = NULL, n_labels = NULL,
   case_ind <- split(seq_len(nrow(case_perm)), rep(seq_len(nrow(x)), each = n_permutations))
   res <- lapply(seq_along(case_ind), function(ind) {
     i <- case_ind[[ind]]
-    perms <- numerify(case_perm[i, ], explainer$feature_type, explainer$bin_continuous, explainer$bin_cuts)
-    #perms <- case_perm[i,]
+    #perms <- numerify(case_perm[i, ], explainer$feature_type, explainer$bin_continuous, explainer$bin_cuts)
+    perms <- case_perm[i,]
     dist <- c(0, dist(feature_scale(perms, explainer$feature_distribution, explainer$feature_type, explainer$bin_continuous),
                       method = dist_fun)[seq_len(n_permutations-1)])
     res <- model_permutations(as.matrix(perms), case_res[i, , drop = FALSE], kernel(dist), labels, n_labels, n_features, feature_select)
