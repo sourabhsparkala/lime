@@ -14,7 +14,7 @@ install:
 
 # Adapt as necessary starting from here
 
-clone_folder: Y:\sourabh
+clone_folder: c:\sourabh
 
 build_script:
   - travis-tool.sh install_deps
